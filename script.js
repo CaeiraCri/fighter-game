@@ -1,4 +1,5 @@
 const canvas = document.querySelector('canvas')
+const background = document.querySelector('img')
 const c = canvas.getContext('2d')
 
 //  16x9 ratio
@@ -43,19 +44,16 @@ class Sprite {
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
 
         //attack
-
         if(this.isAttacking) {
             c.fillStyle = 'white'
             c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
         }
-
 
     }
 
     update() {
 
         this.draw()
-
         //POSIZIONE ATTACKBOX
 
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x
@@ -88,7 +86,7 @@ class Sprite {
 
 const player = new Sprite({
     position:{
-        x: 0,
+        x: 200,
         y: 0
     },
 
@@ -166,6 +164,7 @@ function animate() {
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
+    c.drawImage(background, 0, 0);
     player.update()
     enemy.update()
 
@@ -233,7 +232,7 @@ window.addEventListener('keydown', (event) => {
         case 'd':
             //player.velocity.x = 5
             keys.d.pressed= true
-            player.lastKey = 'd'
+            player.lastKey = 'd';
             break
 
         case 'a':
@@ -243,8 +242,11 @@ window.addEventListener('keydown', (event) => {
             break
 
         case 'w':
-            player.velocity.y = -10
-            break
+            console.log(player.position.y - player.height)
+            if(Math.floor(player.position.y - player.height) == 276) {
+                player.velocity.y = -12;
+            } 
+            break;
 
         case ' ':
             player.attack()
@@ -265,8 +267,10 @@ window.addEventListener('keydown', (event) => {
             break
 
         case 'ArrowUp':
-            enemy.velocity.y = -10
-            break
+            if(Math.floor(enemy.position.y - enemy.height) == 276) {
+                enemy.velocity.y = -12;
+            } 
+            break;
 
         case 'ArrowDown':
             enemy.attack()
@@ -303,3 +307,8 @@ window.addEventListener('keyup', (event) => {
             break
     }
 })
+function playerIsOnGround(playerYposition) {
+    if(playerYposition > 2) {
+
+    }
+}

@@ -12,7 +12,7 @@ body {
     justify-content: center;
     flex-direction: column;
     overflow: hidden;
-    background: url(./assets/background-2.svg);
+    /* background: url(./assets/background-2.svg); */
 }
 
 header {
@@ -24,12 +24,12 @@ header {
     font-size: 3rem;
 }
 
-.wrapper {
+/* .wrapper {
     margin-top: 5%;
     padding: 2rem;
     background: rgb(2, 2, 2);
     border-radius: 2rem;
-}
+} */
 
 .container {
     position: relative;
@@ -89,4 +89,8 @@ header {
 
 .enemy-health {
     background: #f09e00;
+}
+
+img {
+    display: none;
 }
